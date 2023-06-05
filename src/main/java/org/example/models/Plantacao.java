@@ -11,7 +11,7 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "T_PLANTACAO")
+@Table(name = "T_G_PLANTACAO")
 public class Plantacao {
 
     @Id
@@ -20,5 +20,13 @@ public class Plantacao {
 
     private LocalDate dataPlantacao;
     private int quantidadeAgua;
-    private Boolean fertilizante; 
+    private Boolean fertilizante;
+
+    @ManyToOne
+    @JoinColumn(name = "id_usuario")
+    private Usuario usuario;
+
+    @ManyToOne
+    @JoinColumn(name = "id_planta")
+    private Planta planta;
 }

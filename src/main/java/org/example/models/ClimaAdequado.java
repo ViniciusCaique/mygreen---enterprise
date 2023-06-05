@@ -11,7 +11,7 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "T_CLIMA_ADEQUADO")
+@Table(name = "T_G_CLIMA_ADEQUADO")
 public class ClimaAdequado {
 
     @Id
@@ -20,4 +20,12 @@ public class ClimaAdequado {
 
     private String turma;
     private LocalDate duracao;
+
+    @ManyToOne
+    @JoinColumn(name = "id_planta")
+    private Planta planta;
+
+    @ManyToOne
+    @JoinColumn(name = "id_clima")
+    private Clima clima;
 }

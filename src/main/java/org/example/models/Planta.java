@@ -5,11 +5,13 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "T_PLANTA")
+@Table(name = "T_G_PLANTA")
 public class Planta {
 
     @Id
@@ -19,5 +21,11 @@ public class Planta {
     private String planta;
     private String descricao;
     private String tipo;
+
+    @OneToMany(mappedBy = "planta")
+    private List<Plantacao> plantacoes;
+
+    @OneToMany(mappedBy = "planta")
+    private List<ClimaAdequado> climasAdequados;
 
 }
