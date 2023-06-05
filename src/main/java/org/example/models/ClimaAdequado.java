@@ -18,7 +18,7 @@ public class ClimaAdequado {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id_climaAdequado;
 
-    private String turma;
+    private String turno;
     private LocalDate duracao;
 
     @ManyToOne
