@@ -16,7 +16,7 @@ public class Clima {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id_clima;
+    private int id_clima;
 
     private String clima;
     private String descricao;

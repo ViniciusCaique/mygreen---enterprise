@@ -16,7 +16,7 @@ public class ClimaAdequado {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id_climaAdequado;
+    private int id_climaAdequado;
 
     private String turno;
     private LocalDate duracao;

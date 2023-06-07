@@ -16,7 +16,7 @@ public class Planta {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id_planta;
+    private int id_planta;
 
     private String planta;
     private String descricao;

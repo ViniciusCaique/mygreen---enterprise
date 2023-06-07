@@ -4,8 +4,6 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.Query;
 import org.example.models.Usuario;
 
-import java.util.List;
-
 public class UsuarioRepository {
 
     private EntityManager entityManager;
@@ -13,14 +11,14 @@ public class UsuarioRepository {
     public UsuarioRepository(EntityManager entityManager) { this.entityManager = entityManager; }
 
     public Iterable<Usuario> findAll() {
-        var jpql = "SELECT u FROM T_G_USUARIO u";
+        var jpql = "SELECT u FROM Usuario u";
         var query = entityManager.createQuery(jpql, Usuario.class);
         var usuarios = query.getResultList();
         return usuarios;
     }
 
-    public Usuario findById(Long id) {
-        var jpql = "SELECT u FROM T_G_USUARIO u where id = :id";
+    public Usuario findById(int id) {
+        var jpql = "SELECT u FROM Usuario u where u.id = :id";
         var query = entityManager.createQuery(jpql, Usuario.class);
         query.setParameter("id", id);
         var usuario = query.getSingleResult();
@@ -50,14 +48,16 @@ public class UsuarioRepository {
         }
     }
 
-    public void deleteById(Long id) {
-        entityManager.getTransaction().begin();
-        var jpql = "DELETE FROM T_G_USUARIO u where id = :id";
-        var query = entityManager.createQuery(jpql, Usuario.class);
-        query.setParameter("id", id);
-        query.executeUpdate();
-        entityManager.getTransaction().commit();
+    public void deleteUsuarioById(int id) {
+        try{
+            entityManager.getTransaction().begin();
+            Query query = entityManager.createQuery("DELETE FROM Usuario where id =" + id);
+            query.executeUpdate();
+            entityManager.getTransaction().commit();
+        } catch (Exception e) {
+            entityManager.getTransaction().rollback();
+            throw e;
+        }
     }
-
 
 }

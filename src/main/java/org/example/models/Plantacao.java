@@ -16,7 +16,7 @@ public class Plantacao {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id_plantacao;
+    private int id_plantacao;
 
     private LocalDate dataPlantacao;
     private int quantidadeAgua;

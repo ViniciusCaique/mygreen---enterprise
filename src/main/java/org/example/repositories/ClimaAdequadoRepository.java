@@ -1,6 +1,7 @@
 package org.example.repositories;
 
 import jakarta.persistence.EntityManager;
+import jakarta.persistence.Query;
 import org.example.models.ClimaAdequado;
 
 public class ClimaAdequadoRepository {
@@ -10,14 +11,14 @@ public class ClimaAdequadoRepository {
     public ClimaAdequadoRepository(EntityManager entityManager) { this.entityManager = entityManager; }
 
     public Iterable<ClimaAdequado> findAll() {
-        var jpql = "SELECT ca FROM T_G_CLIMA_ADEQUADO ca";
+        var jpql = "SELECT ca FROM ClimaAdequado ca";
         var query = entityManager.createQuery(jpql, ClimaAdequado.class);
         var climasAde = query.getResultList();
         return climasAde;
     }
 
-    public ClimaAdequado findById(Long id) {
-        var jpql = "SELECT ca FROM T_G_CLIMA_ADEQUADO ca where id = :id";
+    public ClimaAdequado findById(int id) {
+        var jpql = "SELECT ca FROM ClimaAdequado ca where id = :id";
         var query = entityManager.createQuery(jpql, ClimaAdequado.class);
         query.setParameter("id", id);
         var climaAde = query.getSingleResult();
@@ -47,12 +48,15 @@ public class ClimaAdequadoRepository {
         }
     }
 
-    public void deleteById(Long id) {
-        entityManager.getTransaction().begin();
-        var jpql = "DELETE FROM T_G_CLIMA_ADEQUADO ca where id = :id";
-        var query = entityManager.createQuery(jpql, ClimaAdequado.class);
-        query.setParameter("id", id);
-        query.executeUpdate();
-        entityManager.getTransaction().commit();
+    public void deleteClimaAdequadoById(int id) {
+        try{
+            entityManager.getTransaction().begin();
+            Query query = entityManager.createQuery("DELETE FROM ClimaAdequado where id =" + id);
+            query.executeUpdate();
+            entityManager.getTransaction().commit();
+        } catch (Exception e) {
+            entityManager.getTransaction().rollback();
+            throw e;
+        }
     }
 }

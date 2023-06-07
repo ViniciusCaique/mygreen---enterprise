@@ -1,6 +1,7 @@
 package org.example.repositories;
 
 import jakarta.persistence.EntityManager;
+import jakarta.persistence.Query;
 import org.example.models.Planta;
 
 public class PlantaRepository {
@@ -10,14 +11,14 @@ public class PlantaRepository {
     public PlantaRepository(EntityManager entityManager) { this.entityManager = entityManager; }
 
     public Iterable<Planta> findAll() {
-        var jpql = "SELECT p FROM T_G_PLANTA p";
+        var jpql = "SELECT p FROM Planta p";
         var query = entityManager.createQuery(jpql, Planta.class);
         var plantas = query.getResultList();
         return plantas;
     }
 
-    public Planta findById(Long id) {
-        var jpql = "SELECT p FROM T_G_PLANTA u where id = :id";
+    public Planta findById(int id) {
+        var jpql = "SELECT p FROM Planta p where id = :id";
         var query = entityManager.createQuery(jpql, Planta.class);
         query.setParameter("id", id);
         var planta = query.getSingleResult();
@@ -47,12 +48,16 @@ public class PlantaRepository {
         }
     }
 
-    public void deleteById(Long id) {
-        entityManager.getTransaction().begin();
-        var jpql = "DELETE FROM T_G_PLANTA p where id = :id";
-        var query = entityManager.createQuery(jpql, Planta.class);
-        query.setParameter("id", id);
-        query.executeUpdate();
-        entityManager.getTransaction().commit();
+    public void deletePlantaById(int id) {
+        try{
+            entityManager.getTransaction().begin();
+            Query query = entityManager.createQuery("DELETE FROM Planta where id =" + id);
+            query.executeUpdate();
+//            entityManager.flush();
+            entityManager.getTransaction().commit();
+        } catch (Exception e) {
+            entityManager.getTransaction().rollback();
+            throw e;
+        }
     }
 }

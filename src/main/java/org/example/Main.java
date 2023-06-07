@@ -15,53 +15,62 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
 
+import java.time.LocalDate;
+
 public class Main {
     public static void main(String[] args) {
         try {
             EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("default");
             EntityManager entityManager = entityManagerFactory.createEntityManager();
 
-            var climaAdequado = new ClimaAdequado();
-            var clima = new Clima();
-            var plantacao = new Plantacao();
-            var planta = new Planta();
-            var usuario = new Usuario();
+            var testClimaAdequado = new ClimaAdequadoRepository(entityManager);
+            var testClima = new ClimaRepository(entityManager);
+            var testPlantacao = new PlantacaoRepository(entityManager);
+            var testPlanta = new PlantaRepository(entityManager);
+            var testUsuario = new UsuarioRepository(entityManager);
 
-            var climaAdequadoRepository = new ClimaAdequadoRepository(entityManager);
-            var climaRepository = new ClimaRepository(entityManager);
-            var plantacaoRepository = new PlantacaoRepository(entityManager);
-            var plantaRepository = new PlantaRepository(entityManager);
-            var usuarioRepository = new UsuarioRepository(entityManager);
+            testUsuario.findAll();
+            testPlanta.findAll();
+            testPlantacao.findAll();
+            testClima.findAll();
+            testClimaAdequado.findAll();
 
-            // climaAdequadoRepository.findAll();
-            // climaAdequadoRepository.findById(1L);
-            // climaAdequadoRepository.createClimaAdequado(climaAdequado);
-            // climaAdequadoRepository.updateClimaAdequado(climaAdequado);
-            // climaAdequadoRepository.deleteById(1L);
+            testUsuario.findById(1);
+            testPlanta.findById(1);
+            testPlantacao.findById(1);
+            testClima.findById(1);
+            testClimaAdequado.findById(1);
 
-            // climaRepository.findAll();
-            // climaRepository.findById(1L);
-            // climaRepository.createClima(clima);
-            // climaRepository.updateClima(clima);
-            // climaRepository.deleteById(1L);
+//            Plantacao pl = new Plantacao();
+//            pl.setId_plantacao(4);
+//            pl.setDataPlantacao(LocalDate.now());
+//            pl.setQuantidadeAgua(120);
+//            pl.setFertilizante(true);
+//            testPlantacao.createPlantacao(pl);
+//
+//            Usuario usuario = new Usuario();
+//            usuario.setId_usuario(4);
+//            usuario.setNome("sukuna");
+//            usuario.setSenha("123");
+//            testUsuario.createUsuario(usuario);
+//            testPlanta.createPlanta(new Planta(4, "Babosa", " é um planta medicinal que possui diversos benefícios para a saúde, como favorecer a cicatrização de feridas e queimaduras, aliviar a prisão de ventre e prevenir a cáries dentárias.", "medicinal", null, null));
+//            testClima.createClima(new Clima(4, "nublado", "aberto", 15, null));
+//            testClimaAdequado.createClimaAdequado(new ClimaAdequado(4, "noturno", LocalDate.now(), null, null));
 
-            // plantacaoRepository.findAll();
-            // plantacaoRepository.findById(1L);
-            // plantacaoRepository.createPlantacao(plantacao);
-            // plantacaoRepository.updatePlantacao(plantacao);
-            // plantacaoRepository.deleteById(1L);
+            var atualizarUsuario = new Usuario();
+            atualizarUsuario.setId_usuario(1);
+            atualizarUsuario.setNome("sukuna");
+            atualizarUsuario.setEmail("sukuna@gmail.com");
+            atualizarUsuario.setSenha("123");
+            testUsuario.updateUsuario(atualizarUsuario);
 
-            // plantaRepository.findAll();
-            // plantaRepository.findById(1L);
-            // plantaRepository.createPlanta(planta);
-            // plantaRepository.updatePlanta(planta);
-            // plantaRepository.deleteById(1L);
 
-            // usuarioRepository.findAll();
-            // usuarioRepository.findById(1L);
-            // usuarioRepository.createUsuario(usuario);
-            // usuarioRepository.updateUsuario(usuario);
-            // usuarioRepository.deleteById(1L);
+
+
+//            testPlanta.deletePlantaById(1);
+//            testUsuario.deleteUsuarioById(1);
+            testPlantacao.deletePlantacaoById(1);
+            testClimaAdequado.deleteClimaAdequadoById(2);
 
             entityManager.close();
             entityManagerFactory.close();
