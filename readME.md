@@ -3,6 +3,9 @@
 
 Uma API para controle de uma plantação.
 
+link do vídeo: https://youtu.be/vxzQyOyEvtk
+
+Diagrama de classe: https://imgur.com/a/aYzDgQI
 
 ### Endpoints
 
