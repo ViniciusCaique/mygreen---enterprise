@@ -41,21 +41,22 @@ public class Main {
             testClima.findById(1);
             testClimaAdequado.findById(1);
 
-//            Plantacao pl = new Plantacao();
-//            pl.setId_plantacao(4);
-//            pl.setDataPlantacao(LocalDate.now());
-//            pl.setQuantidadeAgua(120);
-//            pl.setFertilizante(true);
-//            testPlantacao.createPlantacao(pl);
+        //    Plantacao pl = new Plantacao();
+        //    pl.setId_plantacao(4);
+        //    pl.setDataPlantacao(LocalDate.now());
+        //    pl.setQuantidadeAgua(120);
+        //    pl.setFertilizante(true);
+        //    testPlantacao.createPlantacao(pl);
 //
-//            Usuario usuario = new Usuario();
-//            usuario.setId_usuario(4);
-//            usuario.setNome("sukuna");
-//            usuario.setSenha("123");
-//            testUsuario.createUsuario(usuario);
-//            testPlanta.createPlanta(new Planta(4, "Babosa", " é um planta medicinal que possui diversos benefícios para a saúde, como favorecer a cicatrização de feridas e queimaduras, aliviar a prisão de ventre e prevenir a cáries dentárias.", "medicinal", null, null));
-//            testClima.createClima(new Clima(4, "nublado", "aberto", 15, null));
-//            testClimaAdequado.createClimaAdequado(new ClimaAdequado(4, "noturno", LocalDate.now(), null, null));
+           Usuario usuario = new Usuario();
+           usuario.setId_usuario(4);
+           usuario.setNome("sukuna");
+           usuario.setSenha("123");
+           testUsuario.createUsuario(usuario);
+           testPlanta.createPlanta(new Planta(4, "Babosa", " é um planta medicinal que possui diversos benefícios para a saúde, como favorecer a cicatrização de feridas e queimaduras, aliviar a prisão de ventre e prevenir a cáries dentárias.", "medicinal", null, null));
+           testClima.createClima(new Clima(4, "nublado", "aberto", 15, null));
+           testClimaAdequado.createClimaAdequado(new ClimaAdequado(4, "noturno", LocalDate.now(), null, null));
+// forma passando por parametro que também não funcinou 
 
             var atualizarUsuario = new Usuario();
             atualizarUsuario.setId_usuario(1);
@@ -64,11 +65,8 @@ public class Main {
             atualizarUsuario.setSenha("123");
             testUsuario.updateUsuario(atualizarUsuario);
 
-
-
-
-//            testPlanta.deletePlantaById(1);
-//            testUsuario.deleteUsuarioById(1);
+        //    testPlanta.deletePlantaById(1);
+        //    testUsuario.deleteUsuarioById(1);
             testPlantacao.deletePlantacaoById(1);
             testClimaAdequado.deleteClimaAdequadoById(2);
 
